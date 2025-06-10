@@ -1,0 +1,27 @@
+# Abaikan virtual environment
+venvMLOps/
+.env
+*.env
+
+# Abaikan file dataset yang besar
+*.csv
+*.xlsx
+
+# Abaikan file model yang besar
+
+
+# Abaikan notebook
+*.ipynb
+
+# Abaikan file cache Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Abaikan sistem file macOS/Windows
+.DS_Store
+Thumbs.db
+
+# Abaikan folder IDE/editor
+.vscode/
+.idea/

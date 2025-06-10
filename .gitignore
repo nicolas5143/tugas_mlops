@@ -1,0 +1,6 @@
+venvMLOps/
+__pycache__/
+*.pyc
+*.log
+*.sqlite3
+.env
