@@ -8,10 +8,10 @@ pipeline {
             }
         }
 
-        stage('Build Docker Image') {
+        stage('Use Existing Docker Image') {
             steps {
                 script {
-                    dockerImage = docker.build("heart-disease-web")
+                    dockerImage = docker.image("heart-disease-web")
                 }
             }
         }
