@@ -1,0 +1,37 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Clone Repo') {
+            steps {
+                git 'https://github.com/nicolas5143/tugas_mlops.git'
+            }
+        }
+
+        stage('Build Docker Image') {
+            steps {
+                script {
+                    dockerImage = docker.build("heart-disease-web")
+                }
+            }
+        }
+
+        stage('Run Tests in Docker') {
+            steps {
+                script {
+                    dockerImage.inside {
+                        sh 'python test_api.py'
+                    }
+                }
+            }
+        }
+
+        stage('Run Flask App in Docker') {
+            steps {
+                script {
+                    dockerImage.run('-p 5000:5000')
+                }
+            }
+        }
+    }
+}
