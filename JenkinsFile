@@ -24,7 +24,7 @@ pipeline {
         stage('Deploy Container') {
             steps {
                 script {
-                    // Stop dan delete container jika memang ada
+                    // Stop dan delete jika memang ada, tapi jangan bikin pipeline gagal
                     bat 'docker stop heart-disease-test 2> nul || echo Container not running'
                     bat 'docker rm heart-disease-test 2> nul || echo Container not present'
 
