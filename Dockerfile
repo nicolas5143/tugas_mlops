@@ -8,7 +8,7 @@ WORKDIR /app
 COPY . .
 
 # Install dependencies dari requirements.txt
-RUN pip install --default-timeout=500 --retry 5 --no-cache-dir -r requirements.txt
+RUN pip install --default-timeout=500 --no-cache-dir -r requirements.txt
 
 # Ekspos port 5000 (sesuai Flask app)
 EXPOSE 5000
