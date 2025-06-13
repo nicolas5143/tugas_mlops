@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     stages {
-        stage('Clone Repo (opsional)') {
+        stage('Clone Repo') {
             steps {
                 checkout([$class: 'GitSCM',
                     branches: [[name: 'main']],
@@ -16,7 +16,6 @@ pipeline {
         stage('Pull Docker Image') {
             steps {
                 script {
-                    // Pull the already-existing image
                     bat 'docker pull josetaneo/heart-disease-web:latest'
                 }
             }
@@ -25,37 +24,12 @@ pipeline {
         stage('Deploy Container') {
             steps {
                 script {
-                    // Stop container if it already exists
-                    bat '''
-                        docker stop heart-disease-test 2> nul
-                        docker rm heart-disease-test 2> nul
-                    '''
+                    // Stop dan delete container jika memang ada
+                    bat 'docker stop heart-disease-test 2> nul || echo Container not running'
+                    bat 'docker rm heart-disease-test 2> nul || echo Container not present'
 
-                    // Run container in detach mode
-                    // Mapping port 5000 (containers) to 5000 (Jenkins host)
+                    // Jalankan container yang baru
                     bat 'docker run -d -p 5000:5000 --name heart-disease-test josetaneo/heart-disease-web:latest'
-
-                    // Wait for application to start
-                    echo "Waiting for the application to start..."
-                    bat 'timeout 10'
-
-                    // Perform health check
-                    script {
-                        // If application responds with 200, it's up
-                        bat 'curl http://localhost:5000'
-                        echo "Application is up and running at http://192.168.1.9:5000"
-                    }
-                }
-            }
-        }
-
-        stage('Cleanup') {
-            steps {
-                script {
-                    // Uncomment if you want to destroy after the pipeline
-                    //bat 'docker stop heart-disease-test'
-                    //bat 'docker rm heart-disease-test'
-                    echo "Container is left up for manual testing. Access it at http://192.168.1.9:5000"
                 }
             }
         }
