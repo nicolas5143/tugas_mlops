@@ -16,8 +16,10 @@ pipeline {
         stage('Pull Docker Image') {
             steps {
                 script {
-                    dockerImage = docker.image("josetaneo/heart-disease-web:latest")
-                    dockerImage.pull()
+                    sh '' // or omit
+                    // The following might not work on cmd; you might need `BAT`
+                    // So we use:
+                    bat 'docker pull josetaneo/heart-disease-web:latest'
                 }
             }
         }
@@ -25,17 +27,17 @@ pipeline {
         stage('Run Tests in Docker') {
             steps {
                 script {
-                    dockerImage.inside {
-                        sh 'python test_api.py'
-                    }
+                    // Run container, execute test script, then destroy
+                    bat 'docker run --rm josetaneo/heart-disease-web:latest python test_api.py'
                 }
             }
         }
 
-        stage('Deploy to Container') {
+        stage('Deploy Container') {
             steps {
                 script {
-                    dockerImage.run('-d -p 5000:5000')
+                    // Run container in detach mode
+                    bat 'docker run -d -p 5000:5000 josetaneo/heart-disease-web:latest'
                 }
             }
         }
