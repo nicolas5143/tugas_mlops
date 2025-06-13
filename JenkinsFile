@@ -16,9 +16,6 @@ pipeline {
         stage('Pull Docker Image') {
             steps {
                 script {
-                    sh '' // or omit
-                    // The following might not work on cmd; you might need `BAT`
-                    // So we use:
                     bat 'docker pull josetaneo/heart-disease-web:latest'
                 }
             }
