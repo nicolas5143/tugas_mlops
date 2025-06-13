@@ -24,14 +24,6 @@ pipeline {
         stage('Deploy Container') {
             steps {
                 script {
-                    // Stop dan remove jika memang ada
-                    bat '''
-                        docker ps -a -q -f name=heart-disease-test | findstr .   && (
-                            docker stop heart-disease-test
-                            docker rm heart-disease-test
-                        )
-                    '''
-                    // Run container yang baru
                     bat '''
                         docker run -d -p 5000:5000 --name heart-disease-test josetaneo/heart-disease-web:latest
                     '''
