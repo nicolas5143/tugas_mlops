@@ -25,11 +25,11 @@ pipeline {
             steps {
                 script {
                     // Stop container jika memang ada
-                    bat '''
+                   bat '''
                         docker ps -a -q -f name=heart-disease-test | findstr . && (
-                        docker stop heart-disease-test
-                        docker rm heart-disease-test
-                        )
+                            docker stop heart-disease-test
+                            docker rm heart-disease-test
+                        ) || echo "Container not found, proceeding."
                     '''
 
                     // Run container yang baru
