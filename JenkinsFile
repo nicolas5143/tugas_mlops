@@ -4,14 +4,20 @@ pipeline {
     stages {
         stage('Clone Repo') {
             steps {
-                git branch: 'main', url: 'https://github.com/nicolas5143/tugas_mlops.git'
+                checkout([$class: 'GitSCM',
+                    branches: [[name: 'main']],
+                    userRemoteConfigs: [
+                        [url: 'https://github.com/nicolas5143/tugas_mlops.git']
+                    ]
+                ])
             }
         }
 
-        stage('Build Docker Image') {
+        stage('Pull Docker Image') {
             steps {
                 script {
-                    dockerImage = docker.build("heart-disease-web")
+                    dockerImage = docker.image("josetaneo/heart-disease-web:latest")
+                    dockerImage.pull()
                 }
             }
         }
@@ -26,10 +32,10 @@ pipeline {
             }
         }
 
-        stage('Run Flask App in Docker') {
+        stage('Deploy to Container') {
             steps {
                 script {
-                    dockerImage.run('-p 5000:5000')
+                    dockerImage.run('-d -p 5000:5000')
                 }
             }
         }
