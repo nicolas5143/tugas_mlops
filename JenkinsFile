@@ -26,10 +26,9 @@ pipeline {
                 script {
                     // Stop container jika memang ada
                     bat '''
-                        docker ps -a -q -f name=heart-disease-test | findstr .
-                        if %errorlevel%==0 (
-                            docker stop heart-disease-test
-                            docker rm heart-disease-test
+                        docker ps -a -q -f name=heart-disease-test | findstr . && (
+                        docker stop heart-disease-test
+                        docker rm heart-disease-test
                         )
                     '''
 
