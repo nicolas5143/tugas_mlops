@@ -1,122 +1,99 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <title>Prediksi Penyakit Jantung</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+<meta charset="UTF-8">
+<title>Prediksi Penyakit Jantung</title>
+<script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-blue-50">
-  <h1 class="text-4xl font-semibold text-blue-900 text-center mt-10">Prediksi Penyakit Jantung</h1>
+    <h1 class="text-4xl font-semibold text-blue-900 text-center mt-10">
+        Prediksi Penyakit Jantung
+    </h1>
 
-  <div class="bg-blue-100 p-6 rounded-md shadow-md max-w-md m-auto mt-5">
-    <form action="/" method="POST" class="space-y-4">
-      <div>
-        <label for="age" class="block font-semibold">Usia</label>
-        <input id="age" name="age" type="number" min="0" step="1" required
-               class="w-full p-2 border rounded-md">
-      </div>
+    <div class="max-w-md p-6 bg-blue-100 rounded-lg shadow-md mt-5 ml-auto mr-auto">
+        <form method="POST" class="space-y-4">
+            <label>Usia</label>
+            <input name="age" type="number" step="1" min="0" max="120" class="w-full p-2 rounded-md border border-blue-500"/>
 
-      <div>
-        <label for="resting_bp" class="block font-semibold">Tekanan darah saat resting (mmHg)</label>
-        <input id="resting_bp" name="resting_bp" type="number" min="0" step="1" required
-               class="w-full p-2 border rounded-md">
-      </div>
+            <label>Tekanan Darah Istirahat (mm Hg)</label>
+            <input name="resting_bp" type="number" step="1" min="0" max="250" class="w-full p-2 rounded-md border border-blue-500"/>
 
-      <div>
-        <label for="cholesterol" class="block font-semibold">Kolesterol</label>
-        <input id="cholesterol" name="cholesterol" type="number" min="0" step="1" required
-               class="w-full p-2 border rounded-md">
-      </div>
+            <label>Kolesterol (mg/dL)</label>
+            <input name="cholesterol" type="number" step="1" min="0" max="500" class="w-full p-2 rounded-md border border-blue-500"/>
 
-      <div>
-        <label for="max_heartrate" class="block font-semibold">Heart Rate Maksimal</label>
-        <input id="max_heartrate" name="max_heartrate" type="number" min="0" step="1" required
-               class="w-full p-2 border rounded-md">
-      </div>
+            <label>Detak Jantung Maksimal</label>
+            <input name="max_heartrate" type="number" step="1" min="0" max="220" class="w-full p-2 rounded-md border border-blue-500"/>
 
-      <div>
-        <label for="st_depress" class="block font-semibold">ST Depression</label>
-        <input id="st_depress" name="st_depress" type="number" step="0.1" required
-               class="w-full p-2 border rounded-md">
-      </div>
+            <label>ST Depression</label>
+            <input name="st_depress" type="number" step="0.1" min="0" max="10" class="w-full p-2 rounded-md border border-blue-500"/>
 
-      <div>
-        <label for="sex" class="block font-semibold">Jenis Kelamin</label>
-        <select id="sex" name="sex" class="w-full p-2 border rounded-md">
-          <option value="0">Pria</option>
-          <option value="1">Wanita</option>
-        </select>
-      </div>
+            <label>Jenis Kelamin</label>
+            <select name="sex" class="w-full p-2 rounded-md border border-blue-500">
+                <option value="">Pilih</option>
+                <option value="0">Pria</option>
+                <option value="1">Wanita</option>
+            </select>
 
-      <div>
-        <label for="fasting_sugar" class="block font-semibold">Gula Darah Puasa > 120mg/dl</label>
-        <select id="fasting_sugar" name="fasting_sugar" class="w-full p-2 border rounded-md">
-          <option value="0">Ya</option>
-          <option value="1">Tidak</option>
-        </select>
-      </div>
+            <label>Gula Darah Puasa > 120mg/dL</label>
+            <select name="fasting_sugar" class="w-full p-2 rounded-md border border-blue-500">
+                <option value="">Pilih</option>
+                <option value="0">Ya</option>
+                <option value="1">Tidak</option>
+            </select>
 
-      <div>
-        <label for="exercise_angina" class="block font-semibold">Nyeri Dada saat Olahraga</label>
-        <select id="exercise_angina" name="exercise_angina" class="w-full p-2 border rounded-md">
-          <option value="0">Ya</option>
-          <option value="1">Tidak</option>
-        </select>
-      </div>
+            <label>Nyeri Dada</label>
+            <select name="chest_pain" class="w-full p-2 rounded-md border border-blue-500">
+                <option value="">Pilih</option>
+                <option value="0">Tipikal</option>
+                <option value="1">Atipikal</option>
+                <option value="2">Non-anginal</option>
+                <option value="3">Asymptomatik</option>
+            </select>
 
-      <div>
-        <label for="chest_pain" class="block font-semibold">Tipe Nyeri Dada</label>
-        <select id="chest_pain" name="chest_pain" class="w-full p-2 border rounded-md">
-          <option value="0">Tipikal</option>
-          <option value="1">Atipikal</option>
-          <option value="2">Non-Anginal</option>
-          <option value="3">Asymptomatik</option>
-        </select>
-      </div>
+            <label>Slope Segmen ST</label>
+            <select name="st_slope" class="w-full p-2 rounded-md border border-blue-500">
+                <option value="">Pilih</option>
+                <option value="0">Downslop</option>
+                <option value="1">Flat</option>
+                <option value="2">Upslop</option>
+            </select>
 
-      <div>
-        <label for="st_slope" class="block font-semibold">Slope Segmen ST</label>
-        <select id="st_slope" name="st_slope" class="w-full p-2 border rounded-md">
-          <option value="0">Downslop</option>
-          <option value="1">Flat</option>
-          <option value="2">Upslop</option>
-        </select>
-      </div>
+            <label>Resting ECG</label>
+            <select name="rest_ecg" class="w-full p-2 rounded-md border border-blue-500">
+                <option value="">Pilih</option>
+                <option value="0">Normal</option>
+                <option value="1">Abnormal</option>
+                <option value="2">Hypertrophy</option>
+            </select>
 
-      <div>
-        <label for="rest_ecg" class="block font-semibold">Hasil EKG resting</label>
-        <select id="rest_ecg" name="rest_ecg" class="w-full p-2 border rounded-md">
-          <option value="0">Normal</option>
-          <option value="1">ST abnormal</option>
-          <option value="2">Left ventricular hypertrophy</option>
-        </select>
-      </div>
+            <label>Thal</label>
+            <select name="thal" class="w-full p-2 rounded-md border border-blue-500">
+                <option value="">Pilih</option>
+                <option value="0">Normal</option>
+                <option value="1">Fixed defect</option>
+                <option value="2">Reversible defect</option>
+            </select>
 
-      <div>
-        <label for="thal" class="block font-semibold">Thal</label>
-        <select id="thal" name="thal" class="w-full p-2 border rounded-md">
-          <option value="0">Normal</option>
-          <option value="1">Fixed defect</option>
-          <option value="2">Reversible defect</option>
-        </select>
-      </div>
+            <label>Jumlah Pembuluh</label>
+            <input name="vessels" type="number" step="1" min="0" max="3" class="w-full p-2 rounded-md border border-blue-500"/>
 
-      <div>
-        <label for="vessels" class="block font-semibold">Jumlah Pembuluh Darah</label>
-        <input id="vessels" name="vessels" type="number" min="0" max="3" step="1" required
-               class="w-full p-2 border rounded-md">
-      </div>
+            <label>Exercise Angina</label>
+            <select name="exercise_angina" class="w-full p-2 rounded-md border border-blue-500">
+                <option value="">Pilih</option>
+                <option value="0">Ya</option>
+                <option value="1">Tidak</option>
+            </select>
 
-      <button type="submit" 
-              class="bg-blue-500 hover:bg-blue-600 text-gray-50 font-semibold px-4 py-2 rounded-md">
-        Prediksi
-      </button>
-    </form>
+            <button type="submit" class="bg-blue-500 text-gray-50 font-semibold px-4 py-2 rounded-md mt-4 hover:bg-blue-600">
+                Analisis
+            </button>
+        </form>
 
-    {% if prediction is not none %}
-      <h3 class="text-2xl font-semibold mt-5">Prediksi: {{ prediction }}</h3>
-    {% endif %}
-  </div>
-
+        {% if prediction is not none %}
+            <h2 class="text-2xl font-semibold mt-5">
+                Hasil prediksi: {{ prediction == 0 and "Negatif (tidak sakit jantung)" or "Positif (sakit jantung)" }}
+            </h2>
+        {% endif %}
+    </div>
 </body>
 </html>
