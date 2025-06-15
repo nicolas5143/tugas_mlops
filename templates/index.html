@@ -1,114 +1,122 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <title>Heart Disease Prediction</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+  <meta charset="UTF-8">
+  <title>Prediksi Penyakit Jantung</title>
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-blue-50">
-    <h1 class="text-4xl font-semibold text-blue-900 text-center mt-10">Heart Disease Prediction</h1>
+  <h1 class="text-4xl font-semibold text-blue-900 text-center mt-10">Prediksi Penyakit Jantung</h1>
 
-    <div class="bg-blue-100 p-6 rounded-md shadow-md max-w-md ml-auto mr-auto mt-10">
-        <form method="post">
-            <div class="mb-4">
-                <label for="age" class="block font-semibold">Usia</label>
-                <input id="age" name="age" type="number" min="0" max="100" step="1" class="w-full p-2 border rounded-md" required>
-            </div>
+  <div class="bg-blue-100 p-6 rounded-md shadow-md max-w-md m-auto mt-5">
+    <form action="/" method="POST" class="space-y-4">
+      <div>
+        <label for="age" class="block font-semibold">Usia</label>
+        <input id="age" name="age" type="number" min="0" step="1" required
+               class="w-full p-2 border rounded-md">
+      </div>
 
-            <div class="mb-4">
-                <label for="resting_bp" class="block font-semibold">Tekanan Darah (mmHg)</label>
-                <input id="resting_bp" name="resting blood pressure (in mmHg)" type="number" step="0.1" class="w-full p-2 border rounded-md" required>
-            </div>
+      <div>
+        <label for="resting_bp" class="block font-semibold">Tekanan darah saat resting (mmHg)</label>
+        <input id="resting_bp" name="resting_bp" type="number" min="0" step="1" required
+               class="w-full p-2 border rounded-md">
+      </div>
 
-            <div class="mb-4">
-                <label for="cholesterol" class="block font-semibold">Kolesterol</label>
-                <input id="cholesterol" name="cholesterol" type="number" step="0.1" class="w-full p-2 border rounded-md" required>
-            </div>
+      <div>
+        <label for="cholesterol" class="block font-semibold">Kolesterol</label>
+        <input id="cholesterol" name="cholesterol" type="number" min="0" step="1" required
+               class="w-full p-2 border rounded-md">
+      </div>
 
-            <div class="mb-4">
-                <label for="max_heartrate" class="block font-semibold">Detak Jantung Maksimal</label>
-                <input id="max_heartrate" name="maximum heart rate" type="number" step="0.1" class="w-full p-2 border rounded-md" required>
-            </div>
+      <div>
+        <label for="max_heartrate" class="block font-semibold">Heart Rate Maksimal</label>
+        <input id="max_heartrate" name="max_heartrate" type="number" min="0" step="1" required
+               class="w-full p-2 border rounded-md">
+      </div>
 
-            <div class="mb-4">
-                <label for="st_depress" class="block font-semibold">ST Depression</label>
-                <input id="st_depress" name="ST depression induced by exercise relative to rest" type="number" step="0.1" class="w-full p-2 border rounded-md" required>
-            </div>
+      <div>
+        <label for="st_depress" class="block font-semibold">ST Depression</label>
+        <input id="st_depress" name="st_depress" type="number" step="0.1" required
+               class="w-full p-2 border rounded-md">
+      </div>
 
-            <div class="mb-4">
-                <label for="sex" class="block font-semibold">Jenis Kelamin</label>
-                <select id="sex" name="sex (Male=0, Female=1)" class="w-full p-2 border rounded-md">
-                    <option value="0">Pria</option>
-                    <option value="1">Wanita</option>
-                </select>
-            </div>
+      <div>
+        <label for="sex" class="block font-semibold">Jenis Kelamin</label>
+        <select id="sex" name="sex" class="w-full p-2 border rounded-md">
+          <option value="0">Pria</option>
+          <option value="1">Wanita</option>
+        </select>
+      </div>
 
-            <div class="mb-4">
-                <label for="fasting_sugar" class="block font-semibold">Gula Darah Puasa</label>
-                <select id="fasting_sugar" name="fasting blood sugar if fasting blood sugar > 120 mg/dl (true=0, false=1)" class="w-full p-2 border rounded-md">
-                    <option value="0">> 120mg/dl</option>
-                    <option value="1"><= 120mg/dl</option>
-                </select>
-            </div>
+      <div>
+        <label for="fasting_sugar" class="block font-semibold">Gula Darah Puasa > 120mg/dl</label>
+        <select id="fasting_sugar" name="fasting_sugar" class="w-full p-2 border rounded-md">
+          <option value="0">Ya</option>
+          <option value="1">Tidak</option>
+        </select>
+      </div>
 
-            <div class="mb-4">
-                <label for="exercise_angina" class="block font-semibold">Exercise Angina</label>
-                <select id="exercise_angina" name="exercise include angina (true=0, false=1)" class="w-full p-2 border rounded-md">
-                    <option value="0">Ya</option>
-                    <option value="1">Tidak</option>
-                </select>
-            </div>
+      <div>
+        <label for="exercise_angina" class="block font-semibold">Nyeri Dada saat Olahraga</label>
+        <select id="exercise_angina" name="exercise_angina" class="w-full p-2 border rounded-md">
+          <option value="0">Ya</option>
+          <option value="1">Tidak</option>
+        </select>
+      </div>
 
-            <div class="mb-4">
-                <label for="chest_pain" class="block font-semibold">Tipe Nyeri Dada</label>
-                <select id="chest_pain" name="chest pain (typical angina=0, atypicial angina=1, non-anginal=2, asymptomatic=3)" class="w-full p-2 border rounded-md">
-                    <option value="0">Tipikal Angina</option>
-                    <option value="1">Atypical Angina</option>
-                    <option value="2">Non-Anginal</option>
-                    <option value="3">Asymptomatic</option>
-                </select>
-            </div>
+      <div>
+        <label for="chest_pain" class="block font-semibold">Tipe Nyeri Dada</label>
+        <select id="chest_pain" name="chest_pain" class="w-full p-2 border rounded-md">
+          <option value="0">Tipikal</option>
+          <option value="1">Atipikal</option>
+          <option value="2">Non-Anginal</option>
+          <option value="3">Asymptomatik</option>
+        </select>
+      </div>
 
-            <div class="mb-4">
-                <label for="slope" class="block font-semibold">Slope ST Segment</label>
-                <select id="slope" name="the slope of the peak exercise ST segment" class="w-full p-2 border rounded-md">
-                    <option value="0">Downslop</option>
-                    <option value="1">Flat</option>
-                    <option value="2">Upslop</option>
-                </select>
-            </div>
+      <div>
+        <label for="st_slope" class="block font-semibold">Slope Segmen ST</label>
+        <select id="st_slope" name="st_slope" class="w-full p-2 border rounded-md">
+          <option value="0">Downslop</option>
+          <option value="1">Flat</option>
+          <option value="2">Upslop</option>
+        </select>
+      </div>
 
-            <div class="mb-4">
-                <label for="rest_ecg" class="block font-semibold">Resting ECG</label>
-                <select id="rest_ecg" name="resting electrocardiographic results (normal=0, stt abnormal=1, lv hypertrophy=2)" class="w-full p-2 border rounded-md">
-                    <option value="0">Normal</option>
-                    <option value="1">ST-T Abnormal</option>
-                    <option value="2">Left Ventricular Hypertrophy</option>
-                </select>
-            </div>
+      <div>
+        <label for="rest_ecg" class="block font-semibold">Hasil EKG resting</label>
+        <select id="rest_ecg" name="rest_ecg" class="w-full p-2 border rounded-md">
+          <option value="0">Normal</option>
+          <option value="1">ST abnormal</option>
+          <option value="2">Left ventricular hypertrophy</option>
+        </select>
+      </div>
 
-            <div class="mb-4">
-                <label for="thal" class="block font-semibold">Thal</label>
-                <select id="thal" name="thal (normal=0, fixed defect=1, reversible defect=2)" class="w-full p-2 border rounded-md">
-                    <option value="0">Normal</option>
-                    <option value="1">Fixed Defect</option>
-                    <option value="2">Reversible Defect</option>
-                </select>
-            </div>
+      <div>
+        <label for="thal" class="block font-semibold">Thal</label>
+        <select id="thal" name="thal" class="w-full p-2 border rounded-md">
+          <option value="0">Normal</option>
+          <option value="1">Fixed defect</option>
+          <option value="2">Reversible defect</option>
+        </select>
+      </div>
 
-            <div class="mb-4">
-                <label for="vessels" class="block font-semibold">Jumlah Pembuluh</label>
-                <input id="vessels" name="number of major vessels (0-3) colored by fluoroscopy" type="number" min="0" max="3" step="1" class="w-full p-2 border rounded-md" required>
-            </div>
+      <div>
+        <label for="vessels" class="block font-semibold">Jumlah Pembuluh Darah</label>
+        <input id="vessels" name="vessels" type="number" min="0" max="3" step="1" required
+               class="w-full p-2 border rounded-md">
+      </div>
 
-            <button type="submit" class="bg-blue-700 text-gray-50 font-semibold px-4 py-2 rounded-md hover:bg-blue-800">
-                Predict
-            </button>
-        </form>
+      <button type="submit" 
+              class="bg-blue-500 hover:bg-blue-600 text-gray-50 font-semibold px-4 py-2 rounded-md">
+        Prediksi
+      </button>
+    </form>
 
-        {% if prediction is not none %}
-            <h3 class="text-2xl font-semibold mt-6">Prediksi: {{ prediction }}</h3>
-        {% endif %}
-    </div>
+    {% if prediction is not none %}
+      <h3 class="text-2xl font-semibold mt-5">Prediksi: {{ prediction }}</h3>
+    {% endif %}
+  </div>
+
 </body>
 </html>
