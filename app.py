@@ -11,20 +11,33 @@ preprocessor = joblib.load('preprocessor.pkl')
 scaler = joblib.load('scaler.pkl')
 
 # Fitur input
-input_features = ['age', 'resting_bp', 'cholesterol', 'max_heartrate', 'st_depress',
-                   'sex', 'fasting_sugar', 'exercise_angina',
-                   'chest_pain', 'st_slope',
-                   'rest_ecg', 'thal', 'vessels']
+input_features = {
+    "age": "age",
+    "resting_bp": "trestbps",
+    "cholesterol": "chol",
+    "max_heartrate": "thalch",
+    "st_depress": "oldpeak",
+    "sex": "sex",
+    "fasting_sugar": "fbs",
+    "exercise_angina": "exang",
+    "chest_pain": "cp",
+    "st_slope": "slope",
+    "rest_ecg": "restecg",
+    "thal": "thal",
+    "vessels": "ca"
+}
 
 @app.route('/', methods=['GET', 'POST'])
 def home():
     prediction = None
     if request.method == 'POST':
         try:
-            # Ambil data dari form
-            features = [float(request.form[feat]) for feat in input_features]
-            input_df = pd.DataFrame([dict(zip(input_features, features))])
-            
+            form_data = {}
+            for form_key, model_key in input_features.items():
+                form_data[model_key] = float(request.form[form_key])
+
+            input_df = pd.DataFrame([form_data])
+
             # Preprocessing dan prediksi
             X_preprocessed = preprocessor.transform(input_df)
             X_scaled = scaler.transform(X_preprocessed)
