@@ -11,12 +11,10 @@ preprocessor = joblib.load('preprocessor.pkl')
 scaler = joblib.load('scaler.pkl')
 
 # Fitur input
-input_features = [
-    'age', 'resting blood pressure (in mmHg)', 'cholesterol', 'maximum heart rate', 'ST depression induced by exercise relative to rest',
-    'sex (Male=0, Female=1)', 'fasting blood sugar if fasting blood sugar > 120 mg/dl (true=0, false=1)', 'exercise include angina (true=0, false=1)',
-    'chest pain (typical angina=0, atypicial angina=1, non-anginal=2, asymptomatic=3)', 'the slope of the peak exercise ST segment',
-    'resting electrocardiographic results (normal=0, stt abnormality=1, lv hypertrophy=2)', 'thal (normal=0, fixed defect=1, reversible effect=2)', 'number of major vessels (0-3) colored by fluoroscopy'
-]
+input_features = ['age', 'resting_bp', 'cholesterol', 'max_heartrate', 'st_depress',
+                   'sex', 'fasting_sugar', 'exercise_angina',
+                   'chest_pain', 'st_slope',
+                   'rest_ecg', 'thal', 'vessels']
 
 @app.route('/', methods=['GET', 'POST'])
 def home():
