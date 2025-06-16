@@ -41,7 +41,7 @@ pipeline {
                     // Mengirim request sesuai test_api.py
                     bat '''
                         ping -n 10 127.0.0.1
-                        curl -f http://localhost:5000/health
+                        curl -f http://localhost:5000/
                         pytest test_api.py
                     '''
                 }
