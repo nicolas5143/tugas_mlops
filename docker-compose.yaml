@@ -1,8 +1,4 @@
 services:
-  heart-disease-test:
-    image: josetaneo/heart-disease-web:latest
-    ports:
-      - "5000:5000"
 
   prometheus:
     image: prom/prometheus:latest
@@ -14,7 +10,7 @@ services:
   grafana:
     image: grafana/grafana:latest
     ports:
-      - "3001:3000"
+      - "4000:3000"
     environment:
       - GF_SECURITY_ADMIN_USER=admin
-      - GF_SECURITY_ADMIN_PASSWORD=admin
+      - GF_SECURITY_ADMIN_PASSWORD=grafana123
