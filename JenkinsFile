@@ -40,7 +40,8 @@ pipeline {
                 script {
                     // Mengirim request sesuai test_api.py
                     bat '''
-                        timeout 10
+                        ping -n 10 127.0.0.1
+                        curl -f http://localhost:5000/health
                         pytest test_api.py
                     '''
                 }
