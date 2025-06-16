@@ -2,7 +2,7 @@ version: "3"
 
 services:
   heart-disease-test:
-    build: .
+    image: josetaneo/heart-disease-test:latest
     ports:
       - "5000:5000"
 
