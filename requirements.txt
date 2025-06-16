@@ -11,3 +11,5 @@ six
 requests
 mlflow
 pytest
+prometheus_client
+logging
