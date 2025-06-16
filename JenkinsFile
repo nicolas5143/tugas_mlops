@@ -38,6 +38,7 @@ pipeline {
         stage('Running Tests') {
             steps {
                 script {
+                    timeout 10
                     // Mengirim request sesuai test_api.py
                     bat '''
                         pytest test_api.py
