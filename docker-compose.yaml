@@ -1,5 +1,3 @@
-version: "3"
-
 services:
   heart-disease-test:
     image: josetaneo/heart-disease-web:latest
@@ -16,7 +14,7 @@ services:
   grafana:
     image: grafana/grafana:latest
     ports:
-      - "3000:3000"
+      - "3001:3000"
     environment:
       - GF_SECURITY_ADMIN_USER=admin
       - GF_SECURITY_ADMIN_PASSWORD=admin
