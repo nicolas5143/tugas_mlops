@@ -10,3 +10,4 @@ joblib
 six
 requests
 mlflow
+pytest
